@@ -21,27 +21,39 @@ export default class IceAndCold {
         const character = await this.getResource(`/characters/${id}`)
         return this._transformCharacter(character)
     }
-    getAllHouses() {
-        return this.getResource(`/houses/`)
+    async getAllHouses() {
+        const houses = await this.getResource(`/houses/`)
+        return houses.map(this._transformHouse)
     }
-    getHouses(id) {
-        return this.getResource(`/houses/${id}`)
+    async getHouses(id) {
+        const house = await this.getResource(`/houses/${id}`)
+        return this._transformHouses(house)
     }
-    getAllBooks() {
-        return this.getResource(`/books/`)
+    async getAllBooks() {
+        const books = await this.getResource(`/books/`)
+        return books.map(this._transformBooks)
     }
-    getBooks(id) {
-        return this.getResource(`/books/${id}`)
+    async getBooks(id) {
+        const book = await this.getResource(`/books/${id}`)
+        return this._transformBook(book)
+    }
+
+    isSet(data) {
+        if (data) {
+            return data
+        } else {
+            return 'no-data :('
+        }
     }
 
     _transformCharacter(char) {
         return {
-            name: char.name,
-            gender: char.gender,
-            born: char.born,
-            died: char.died,
-            culture: char.culture,
-            aliases: char.aliases,
+            name: this.isSet(char.name),
+            gender: this.isSet(char.gender),
+            born: this.isSet(char.born),
+            died: this.isSet(char.died),
+            culture: this.isSet(char.culture),
+            aliases: this.isSet(char.aliases.forEach(aliase => aliase)),
         } 
     }
 

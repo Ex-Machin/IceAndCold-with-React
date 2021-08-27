@@ -1,11 +1,11 @@
 import React from 'react'
 import './errorMessage.css'
-import img from './error.jpg'
+import gif from './giphy.gif'
 
 const ErrorMessage = () => {
     return (
         <>
-            <img src={img} alt="error" />
+            <img src={gif} alt="error" />
             <span>Something went wrong. Please try again</span>
         </>
     )
