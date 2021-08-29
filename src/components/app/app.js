@@ -1,23 +1,30 @@
 import React, {Component} from "react"
-import {Col, Row, Container, Button } from 'reactstrap';
+import {Col, Row, Container, Button} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import ErrorMessage from '../errorMessage';
+import CharacterPage from '../characterPage';
+
+import './app.css'
 
 export default class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isToggleOn: true,
-        };
-        this.handleClick = this.handleClick.bind(this);
-      }
 
-    handleClick() {
-        this.setState(prevState => ({
-          isToggleOn: !prevState.isToggleOn
-        }));
+    state = {
+        isToggleOn: true,
+    }
+
+    handleClick = () => {
+        this.setState((prevState) => {
+            return {
+                isToggleOn: !prevState.isToggleOn
+            }
+        });
+    }
+
+    onCharSelected = (id) => {
+        this.setState({
+            selectedChar: id
+        })
     }
 
     render() {
@@ -33,17 +40,12 @@ export default class App extends Component {
                     <Row>
                         <Col lg={{size: 5, offset: 0}}>
                             {header}
-                            <Button outline color="info" size="lg" onClick={this.handleClick}>Toggle</Button>{' '}
+                            <Button outline color="info" size="lg" onClick={this.handleClick} className="btn-toogle">Toggle</Button>{' '}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList />
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails />
-                        </Col>
-                    </Row>
+                    <CharacterPage/>
+                    <CharacterPage/>
+                    <CharacterPage/>
                 </Container>
             </>
         );

@@ -14,11 +14,11 @@ export default class IceAndCold {
         return await res.json()
     }
     async getAllCharacters() {
-        const res = await this.getResource(`/characters?page=5&pageSize=10`)
-        return res.map(this._transformCharacter)
+        const res = await this.getResource(`/characters?page=5&pageSize=10`);
+        return res.map(this._transformCharacter);
     }
-    async getCharacter(id){
-        const character = await this.getResource(`/characters/${id}`)
+    async getCharacter(charId){
+        const character = await this.getResource(`/characters/${charId}`)
         return this._transformCharacter(character)
     }
     async getAllHouses() {
@@ -42,11 +42,11 @@ export default class IceAndCold {
         if (data) {
             return data
         } else {
-            return 'no-data :('
+            return 'no data :('
         }
     }
 
-    _transformCharacter(char) {
+    _transformCharacter = (char) => {
         return {
             name: this.isSet(char.name),
             gender: this.isSet(char.gender),
@@ -57,7 +57,7 @@ export default class IceAndCold {
         } 
     }
 
-    _transformHouse(house) {
+    _transformHouse = (house) => {
         return {
             name: house.name,
             region: house.region,
@@ -68,7 +68,7 @@ export default class IceAndCold {
         }
     }
 
-    _transformBook(book) {
+    _transformBook = (book) => {
         return {
             name: book.name,
             numberOfPages: book.numberOfPages,
