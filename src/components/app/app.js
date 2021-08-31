@@ -44,8 +44,6 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage/>
-                    <CharacterPage/>
-                    <CharacterPage/>
                 </Container>
             </>
         );

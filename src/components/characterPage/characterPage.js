@@ -23,6 +23,7 @@ export default class characterPage extends Component {
         })
     }
 
+
     render() {
 
         if(this.state.error) {
@@ -35,7 +36,7 @@ export default class characterPage extends Component {
                     <ItemList onCharSelected={this.onCharSelected}/>
                 </Col>
                 <Col md='6'>
-                    <CharDetails charId={this.state.selectedChar}/>
+                    <CharDetails charId = {this.state.selectedChar} />
                 </Col>
             </Row>
         )
