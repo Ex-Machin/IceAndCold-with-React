@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './charDetails.css';
 import gotService from '../../services/gotService';
+import Spinner from '../spinner';
+import ErrorMessage from '../errorMessage';
 
 export default class CharDetails extends Component {
 
@@ -8,6 +10,7 @@ export default class CharDetails extends Component {
 
     state = {
         char: null,
+        error: false,
     }
 
     componentDidMount() {
@@ -18,6 +21,12 @@ export default class CharDetails extends Component {
         if (this.props.charId !== prevProps.charId) {
             this.updateChar()
         }
+    }
+
+    componentDidCatch() {
+        this.setState({
+            error: true
+        })
     }
 
     updateChar() {
@@ -35,7 +44,11 @@ export default class CharDetails extends Component {
     render() {
 
         if(!this.state.char) {
-            return <span className="select-error">Please select a character</span>
+            return <Spinner />
+        }
+
+        if(this.state.error) {
+            return <ErrorMessage/>
         }
 
         const {name, gender, born, died, culture} = this.state.char

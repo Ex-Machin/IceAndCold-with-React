@@ -17,19 +17,21 @@ export default class ItemList extends Component {
         this.gotService.getAllCharacters()
             .then((charList) => {
                 this.setState ({
-                    charList
+                    charList,
                 })
             })
     }
 
     renderItems(arr) {
         return arr.map((item, i) => {
+
+            const {id} = item;
+
             return (
                 <ListGroupItem  
-                    key ={i}
-                    class Name="list-group-item"
-                    onClick={() => this.props.onCharSelected(41 + i)}
-                    >
+                    key = {id}
+                    className="list-group-item"
+                    onClick={() => this.props.onCharSelected(41 + i)}>
                         {item.name}
                 </ListGroupItem>
             )

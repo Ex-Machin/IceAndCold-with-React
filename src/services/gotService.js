@@ -46,8 +46,14 @@ export default class IceAndCold {
         }
     }
 
+    _extractId = (item) => {
+        const idRegExp = /\/([0-9]*)$/;
+        return item.url.match(idRegExp)[1];
+    }
+
     _transformCharacter = (char) => {
         return {
+            id: this._extractId(char),
             name: this.isSet(char.name),
             gender: this.isSet(char.gender),
             born: this.isSet(char.born),
@@ -59,6 +65,7 @@ export default class IceAndCold {
 
     _transformHouse = (house) => {
         return {
+            id: this._extractId(house),
             name: house.name,
             region: house.region,
             word: house.word,
@@ -70,6 +77,7 @@ export default class IceAndCold {
 
     _transformBook = (book) => {
         return {
+            id: this._extractId(book),
             name: book.name,
             numberOfPages: book.numberOfPages,
             publisher: book.publisher,
